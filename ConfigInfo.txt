@@ -1,0 +1,73 @@
+# Format:
+# <GIT project name>,<GIT project id>,<GOCD pipeline prefix>,<bmp-config-repo file prefix>
+# cart2 per Cindy
+#account-management-business-service,1565, BMP_AccountManagmentService
+bmp-account-profile-service,8595,BMP_AccountProfileService,bmp-account-profile-service
+account-treatment-business-service,15952,BMP_AccountTreatmentService,bmp-account-treatment-business-service
+billing-order-orchestrator-business-service,15953,BMP_BillingOrderOrchestratorService,bmp-billing-order-orchestrator-business-service
+# per Cindy, bill quote is owned by shopping cart 2
+#bill-estimates-business-service,1290,BMP_BillEstimatesService
+bmp-camunda-monitoring-app,15954,BMP_CamundaMonitoringAppService,bmp-camunda-monitoring-app
+service-datamapping-business-service,15957,BMP_DataMappingService,bmp-datamapping-business-service
+directory-listing-business-service,15955,BMP_DirectoryListingBusinessService,bmp-directory-listing-business-service
+bmp-directtv-om-service,15956,BMP_DirectTvOmService,bmp-directtv-om-service
+bmp-dtv-correction-service,15958,BMP_DtvCorrectionBusinessService,bmp-dtv-correction-service
+# according to Naimesh's spreadsheet, this is owned by catalog management team
+#bmp-dtv-correction-service,8623,BMP_DtvCorrectionBusinessServiceDL
+dtv-optout-business-service,15959,BMP_DtvOptoutBusinessService,bmp-dtvoptout-business-service
+dtv-treatment-business-service,15974,BMP_DtvTreatmentBusinessService,bmp-dtv-treatment-business-service
+email-provisioning-business-service,15960,BMP_EmailProvisioningService,bmp-email-provisioning-business-service
+FFWF-business-service,15961,BMP_FFWFService,bmp-ffwf-business-service
+gman-gbus-business-service,15962,BMP_GmanGbusService,bmp-gman-gbus-business-service
+isst-business-service,15963,BMP_IsstBusinessService,bmp-isst-business-service
+jeopardy-business-service,15124,BMP_JeopardyService,bmp-jeopardy-business-service
+# comment out temporarily since Harish pause the pipeline
+#bmp-kafka-adapter,15972,BMP_KafkaAdapterService,bmp-kafka-adapter
+# moved to shopping cart 2 team
+#lifeline-business-service,5864,BMP_LifelineBusinessService
+#lifelinedl in TEST1 is moved to BMCM_DEV pipeline group and used a different pipeline name:BMP_LifelineBusinessServiceDL_K8S_DEV_DEPLOY that doesn't fit the naming convention suffix
+#moved to catalog managment team
+#lifeline-business-service,5864,BMP_LifelineBusinessServiceDL
+notification-business-service,15964,BMP_NotificationService,bmp-notification-business-service
+bmp-oes-business-service,15965,BMP_OESBusinessService,bmp-oes-business-service
+order-decomposition-business-service,15966,BMP_OrderDecompositionService,bmp-order-decomposition-business-service
+order-management-business-service,15128,BMP_OrderManagementService,bmp-order-management-business-service
+bmp-ordermanagement-gui,15975,BMP_OrdermanagementUI,skip
+#!!!!!!!!!!!!!! comment it for now since it doesn't work in DEVSI1
+order-management-process,15967,BMP_OrderManagementProcessService,bmp-order-management-process
+order-status-update-business-service,15968,BMP_OrderStatusUpdateBusinessService,bmp-order-status-update-business-service
+# those two prepaid services are not used any more
+#bmp-prepaid-billestimate,9480,
+#bmp-prepaid-createaccount,9714
+# currently owned by cart, but there is a comment that may want to co-own it with submit order team
+#bmp-prepaid-services,9716,BMP_PrepaidServices
+provisioning-order-business-service,15130,BMP_ProvisioningOrderService,bmp-provisioning-order-business-service
+#rcc-business-service,9055,BMP_RccService -- belong to shopping cart
+# bmp-rcc-ui,8888,BMP_RccUI -- belong to shopping cart
+#bmp-rule-service,3758,BMP_RuleService
+#bmp-rule-service,3758,BMP_RuleServiceDL
+rules-mapping-service,15969,BMP_RulesMappingService,bmp-rules-mapping-service
+service-delivery-orchestrator-business-service,15970,BMP_ServiceDeliveryService,bmp-service-delivery-orchestrator-business-service
+service-registry-business-service,15971,BMP_ServiceRegistryService,bmp-service-registry-business-service
+tom-orchestrator-business-service,15121,BMP_TomOrchestratorServiceService,bmp-tom-orchestrator-business-service
+translation-lookup-service,6340,BMP_TranslationLookupService,bmp-translation-lookup-service
+update-email-account-business-service,2975,BMP_UpdateEmailAccountService,bmp-update-email-account-business-service
+cybersecurity-business-service,10832,BMP_cybersecuritybusinessservice,cybersecurity-business-service
+quickconnect-bs-service,15973,BMP_QuickconnecService,bmp-qconnect-service
+# The only one in the BMCO namespace. belongs to cart2
+#bmp-qc-services,10340,BMP_QCServices,bmp-qc-services
+bmp-armor-business-service,14776,BMP_ArmorService,bmp-armor-business-service
+#########not good to skip it!!!!!
+bmp-martens-orders-service,14152,BMP_MartensOrdersService,skip
+# in the bmcm namespace as bmp-bm-ui
+bmp-bm-ui,10458,BMP_BM_UI,skip
+# this is owned by submit order, but not changed often
+#bmp-translationlookup-ui,6403,BMP_TranslationLookupUI
+
+# the following are the services we may not need to support
+# Yugendar not sure whether catalog should own this one or not. bmp-reportmanagement-ui. Not changed often
+#bmp-reportmanagement-ui,3368,BMP_ReportManagementUI_K8S_TEST2
+# should be owned by catalog team
+#productmanagement-ui,915,BMP_ProductManagementUI
+# spring-admin-server,8738, can't support since latest build was Sep 4
+# dhp-provisioning-service, can't support. No success build in TEST1, no pipelines for TEST2/TEST4
