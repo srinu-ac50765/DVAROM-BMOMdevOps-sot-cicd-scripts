@@ -100,8 +100,7 @@ class checkProperties:
             self.diffServiceProperties(service)         
                 
         
-
-x = checkProperties("c:/users/nxli/git/bmom/bmp-config-repo", "test1", "prod", "2020-03-01 01:01:01 +0000") 
+x = checkProperties("c:/users/nxli/git/bmom/bmp-config-repo", "test2", "prod", "2020-05-05 01:01:01 +0000") 
 #x = checkProperties("c:/users/nxli/git/bm/tmp/bmp-config-repo", "test1", "prod", "2020-02-28 01:01:01 +0000")
 #x.diffServiceProperties("bmp-bmom-service-registry-business-service") 
 #x.diffServiceProperties("bmp-martens-orders-service")

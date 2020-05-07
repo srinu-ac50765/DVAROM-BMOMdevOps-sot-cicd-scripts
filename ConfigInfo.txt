@@ -59,6 +59,8 @@ quickconnect-bs-service,15973,BMP_QuickconnecService,bmp-qconnect-service
 bmp-armor-business-service,14776,BMP_ArmorService,bmp-armor-business-service
 #########not good to skip it!!!!!
 bmp-martens-orders-service,14152,BMP_MartensOrdersService,skip
+bmom-service-registry-business-service,16347,BMP_BMOMServiceRegistryBusinessService,bmp-bmom-service-registry-business-service
+bmp-external-channel-info-service,16487,BMP_ExternalChannelInfoService,bmp-external-channel-info-service
 # in the bmcm namespace as bmp-bm-ui
 bmp-bm-ui,10458,BMP_BM_UI,skip
 # this is owned by submit order, but not changed often
