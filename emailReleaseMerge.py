@@ -33,8 +33,8 @@ projMap=bmGitLabCommon.getprojMap()
 log.debug(projMap)
 #fromBranch = "release/march20"
 #toBranch = "release/april20"
-fromBranch = "release/april20"
-toBranch = "release/may20"
+fromBranch = "release/may20"
+toBranch = "release/june20"
 
 aprilExclusiveList = ["bmp-bm-ui", "provisioning-order-business-service"]
 
@@ -58,7 +58,7 @@ emailList=bmGitLabCommon.getMissingCommitEmailList()
 
 if emailList and sendEmailFlag:
     #emailList=["ning.li@centurylink.com"]
-    msgPreamble = f"You made changes in the {fromBranch} branch, but did not merge {fromBranch} to the {toBranch} branch. For projects owned by the Submit Order teams, you are responsible for submitting request to merge release branches. After merge is complete, please open STS ticket for deployment."
+    msgPreamble = f"You made changes in the {fromBranch} branch, but did not merge the {fromBranch} to the {toBranch} branch. For projects owned by the Submit Order teams, you are responsible for submitting request to merge release branches. When multiple developers have missing commits for a project, the Merge Owner is responsible for merging. After merge is complete, please open STS ticket for deployment."
     subject = f"Missing Merges Notice ({fromBranch} to {toBranch})"
     email_handler.sendEmail(subject, emailList, msgPreamble)    
 

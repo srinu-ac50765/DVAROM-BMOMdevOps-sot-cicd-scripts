@@ -72,9 +72,13 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
         retVal = 0
     else:
         log.info("\r\n%s from:%s to:%s", project.name, fromBranchName, targetBranchName) 
+        
+        firstCommit = result['commits'][0];
         for commit in result['commits']:            
             log.info(getCommitInfoString(commit))    
-            gitMissingCommitEmailSet.add(commit["author_email"])    
+            gitMissingCommitEmailSet.add(commit["author_email"]) 
+        log.info("==================================================")
+        log.info("Merge Owner:%s", firstCommit["author_email"])   
         retVal = 1 
     return retVal
         
