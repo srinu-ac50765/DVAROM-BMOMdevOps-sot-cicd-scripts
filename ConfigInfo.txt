@@ -22,7 +22,7 @@ gman-gbus-business-service,15962,BMP_GmanGbusService,bmp-gman-gbus-business-serv
 isst-business-service,15963,BMP_IsstBusinessService,bmp-isst-business-service
 jeopardy-business-service,15124,BMP_JeopardyService,bmp-jeopardy-business-service
 # comment out temporarily since Harish pause the pipeline
-#bmp-kafka-adapter,15972,BMP_KafkaAdapterService,bmp-kafka-adapter
+bmp-kafka-adapter,15972,BMP_KafkaAdapterService,bmp-kafka-adapter
 # moved to shopping cart 2 team
 #lifeline-business-service,5864,BMP_LifelineBusinessService
 #lifelinedl in TEST1 is moved to BMCM_DEV pipeline group and used a different pipeline name:BMP_LifelineBusinessServiceDL_K8S_DEV_DEPLOY that doesn't fit the naming convention suffix
