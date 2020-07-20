@@ -25,6 +25,7 @@ All the other files are just simple scripts that invoke the above functions
 15. check Jenkins pipelines status: checkJenkinsReleaseStatus  
 16. check kubenetes images in two enviroment: checkKubeImage
 17. check kubenetes pod deployment: checkKubeDeploy
+18. Provide a list of kubernetes service names:checkProjectChangeKube. Similar to checkProjectChange. But the output is the list of kubernetes services instead of GoCD pipelines.
 
 Most of the above scripts have corresponding scripts that operator on a single project level. A project level script contains
 key word "Project" in its name.
