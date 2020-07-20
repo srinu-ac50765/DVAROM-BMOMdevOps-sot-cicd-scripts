@@ -9,7 +9,9 @@ log=logging.getLogger("bmGitLabCommon")
 # key is GIT project name, value is GIT project id
 projMap = {}
 projToGocdMap = {}
+projToJenkinsMap = {}
 gocdToGitMap = {}
+jenkinsToGitMap = {}
 projConfigBaseMap = {}
 gitMissingCommitEmailSet = set()
 
@@ -23,16 +25,20 @@ def init():
             continue
         if line.startswith('#'):
             continue
-        projName, projId, gocdPipelineBase,configBase = line.split(",")
+        log.debug(line)
+        projName, projId, gocdPipelineBase,configBase,jenkinsPipelineBase = line.split(",")
         projName = projName.strip()
         projId = projId.strip()
         gocdPipelineBase = gocdPipelineBase.strip()
+        jenkinsPipelineBase = jenkinsPipelineBase.strip()
         configBase = configBase.strip()
         
         
         projMap[projName] = projId
         projToGocdMap[projName] = gocdPipelineBase
-        gocdToGitMap[gocdPipelineBase]=projName            
+        projToJenkinsMap[projName] = jenkinsPipelineBase
+        gocdToGitMap[gocdPipelineBase]=projName  
+        jenkinsToGitMap[jenkinsPipelineBase]=projName          
         if configBase != "skip":
             projConfigBaseMap[projName] = configBase
 
@@ -42,12 +48,20 @@ def getprojMap():
 def getProjToGocdMap():
     return projToGocdMap;
 
+def getProjToJenkinsMap():
+    return projToJenkinsMap;
+
 def getGocdToGitMap():
     return gocdToGitMap;
+
+def getJenkinsToGitMap():
+    return jenkinsToGitMap;
 
 def getMissingCommitEmailList():
     return gitMissingCommitEmailSet;
 
+def getProjConfigBaseMap():
+    return projConfigBaseMap;
 
 def compareBranches(projectName, fromBranchName, targetBranchName):
     projectId=projMap[projectName]

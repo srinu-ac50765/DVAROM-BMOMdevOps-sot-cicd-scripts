@@ -22,7 +22,7 @@ emailSet = set()
 
 def init():
     
-    lineList = [line.rstrip('\n') for line in open("SOTConfigInfo.txt", "r")]
+    lineList = [line.rstrip('\n') for line in open("ConfigInfo.txt", "r")]
 
     for line in lineList:
         line = line.strip()
