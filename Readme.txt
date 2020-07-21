@@ -21,7 +21,7 @@ All the other files are just simple scripts that invoke the above functions
 12. Check whether latest code is deployed in Jenkins: checkJenkinsReleaseDeploy
 13. Batch trigger Jenkins pipelines: triggerJenkinsReleasePipelines.py
     This can be used to deploy a new environment
-14. Batch trigger Proceed in Jenkins Test-ReleaseGate stage: JenkinsReleaseTestDeploy
+14. Batch trigger Proceed in Jenkins Test-ReleaseGate stage: JenkinsReleaseTestDeploy: triggerJenkinsReleaseTestDeploy.py
 15. check Jenkins pipelines status: checkJenkinsReleaseStatus  
 16. check kubenetes images in two enviroment: checkKubeImage
 17. check kubenetes pod deployment: checkKubeDeploy

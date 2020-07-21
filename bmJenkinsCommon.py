@@ -127,12 +127,12 @@ def getBuildStages(pipeline, buildNumber):
 def getProdBuildNumber(pipeline):  
 
     buildNumber = getLatestBuildNumberByLastStage(pipeline, "PROD-ReleaseGate", "PAUSED_PENDING_INPUT")
-    prodDeployNumber = getLatestBuildNumberByLastStage(pipeline, "PROD-Deploy", "")
+    prodDeployNumber,prodBuildDt = getLatestBuildNumberByStage(pipeline, "PROD-Deploy", "")
      
     if buildNumber == -1:
-        log.error("%s: NO BUILD AVAILABLE", pipeline)
+        log.error("%s: NO BUILD AVAILABLE", pipeline)    
     else:
-        if (prodDeployNumber < buildNumber):
+        if (prodDeployNumber == None or prodDeployNumber < buildNumber):
             log.info("%s/%s", pipeline, str(buildNumber))
         else:
             buildLastStage = getBuildLastStage(pipeline, prodDeployNumber)

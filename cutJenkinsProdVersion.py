@@ -27,12 +27,17 @@ lastBranch = "release/june20"
 totalCount = 0;
 changedCount = 0;
 for jenkinsPipeLineBase, gitProjName in jenkinsToGitMap.items(): 
-    ++totalCount
+    totalCount = totalCount + 1
     needDeploy = bmGitLabCommon.compareBranchesLastCommit(gitProjName, lastBranch, branch);
-    if needDeploy:
+    
+    if needDeploy:        
         pipeline =  bmJenkinsCommon.getPipelineName(jenkinsPipeLineBase, envName)
+        #if not pipeline == "BMP_AccountTreatmentService-test1-CONTINUOUS":
+#         if not pipeline == "BMP_billing-order-orchestrator-business-service-test1-CONTINUOUS":
+#             continue
+            
         buildInfo = bmJenkinsCommon.getProdBuildNumber(pipeline)
-        ++changedCount
+        changedCount = changedCount + 1
         
 log.info("\r\n\r\nTotal count: %s Changed count: %s", totalCount, changedCount)      
 log.info("Done!")           

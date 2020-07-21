@@ -16,20 +16,16 @@ logging.root.setLevel(logging.INFO)
 
 jenkinsToGitMap = bmGitLabCommon.getJenkinsToGitMap()
 log.debug(jenkinsToGitMap)
-envName = "TEST2"
-x = [
-"BMP_quickconnect-bs-service-test2-CONTINUOUS"
-    ]
-# for pipeline in x:
-#     bmJenkinsCommon.triggerPipeline(pipeline)
+envName = "TEST4"
+
 for jenkinsPipeLineBase in jenkinsToGitMap.keys():    
     pipeline =  bmJenkinsCommon.getPipelineName(jenkinsPipeLineBase, envName)
-#     if pipeline != "BMP_account-profile-service":    
-#         bmJenkinsCommon.triggerPipeline(pipeline)   
-    lastBuildNumber = bmJenkinsCommon.getLatestBuildNumberByLastStage(pipeline)
-    jobLastStage = bmJenkinsCommon.getBuildLastStage(pipeline, lastBuildNumber)    
-    if jobLastStage:
-        log.info("%s lastBuildNumber:%s %s %s", pipeline, lastBuildNumber, jobLastStage['name'], jobLastStage['status'])
-    else:
-        log.info("%s lastBuildNumber:%s First Stage not started", pipeline, lastBuildNumber)
+    bmJenkinsCommon.triggerPipeline(pipeline)
+#     Need to wait for a while, otherwise the new build number probably not reflected
+#     lastBuildNumber = bmJenkinsCommon.getLatestBuildNumberByLastStage(pipeline)
+#     jobLastStage = bmJenkinsCommon.getBuildLastStage(pipeline, lastBuildNumber)    
+#     if jobLastStage:
+#         log.info("%s lastBuildNumber:%s %s %s", pipeline, lastBuildNumber, jobLastStage['name'], jobLastStage['status'])
+#     else:
+#         log.info("%s lastBuildNumber:%s First Stage not started", pipeline, lastBuildNumber)
 log.info("Done!!!")
