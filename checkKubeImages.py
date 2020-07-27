@@ -47,9 +47,9 @@ kubeDeployList =  [
 
 # generate the image files using command (or enhance the script to call it here)
 # prod: in prod namespace
-# kubectl get deployments -o wide | awk  '\''{print $7 "\t",  $8}'\''
+# kubectl get deployments -o wide | awk  '{print $7 "\t",  $8}'
 # test: in test namespace, for example test1
-# kubectl get deployments -o wide | awk  '\''{print $7 "\t",  $8}'\'' | grep test1
+# kubectl get deployments -o wide | awk  '{print $7 "\t",  $8}' | grep test1
 bmKubeCommon.compareImages("c:/bm/test1-image", "c:/bm/prod-image", kubeDeployList)
 #checkPodsDate("c:/bm/test1-pod", 126000, kubeDeployList)    
 log.info("Done!!!")
