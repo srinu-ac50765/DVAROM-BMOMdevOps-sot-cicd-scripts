@@ -20,16 +20,17 @@ logging.root.setLevel(logging.INFO)
 jenkinsToGitMap = bmGitLabCommon.getJenkinsToGitMap()
 log.debug(jenkinsToGitMap)
    
-envName = "TEST1"
-branch = "release/july20"
-lastBranch = "release/june20"
+envName = "TEST4"
+branch = "release/december20"
+lastBranch = "release/november20"
 
 totalCount = 0;
 changedCount = 0;
 for jenkinsPipeLineBase, gitProjName in jenkinsToGitMap.items(): 
     totalCount = totalCount + 1
     needDeploy = bmGitLabCommon.compareBranchesLastCommit(gitProjName, lastBranch, branch);
-    
+    jenkinsPipeLineBase = jenkinsPipeLineBase.replace("_build_","_Test4_")
+    #print(gitProjName)
     if needDeploy:        
         pipeline =  bmJenkinsCommon.getPipelineName(jenkinsPipeLineBase, envName)
         #if not pipeline == "BMP_AccountTreatmentService-test1-CONTINUOUS":
