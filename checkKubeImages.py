@@ -50,6 +50,22 @@ kubeDeployList =  [
 # kubectl get deployments -o wide | awk  '{print $7 "\t",  $8}'
 # test: in test namespace, for example test1
 # kubectl get deployments -o wide | awk  '{print $7 "\t",  $8}' | grep test1
+# generate the image files using command (or enhance the script to call it here)
+# prod: in prod namespace
+# kubectl get deployments -o wide | awk  '\''{print $7 "\t",  $8}'\''
+# test: in test namespace, for example test1
+# kubectl get deployments -o wide | awk  '\''{print $7 "\t",  $8}'\'' | grep test1
+# Replace -test1 and app= with empty string in TEST env
+#TEST1 CMD
+#kubectl get deployments -o wide | awk  '{print $8 "\t",  $7}' | grep test1 > c:/Users/AC60906/git/prodrelease/sot-cicd-scripts/bm/test1-image
+#TEST2 CMD
+#kubectl get deployments -o wide | awk  '{print $8 "\t",  $7}' | grep test2 > c:/Users/AC60906/git/prodrelease/sot-cicd-scripts/bm/test2-image
+#TEST4 CMD
+#kubectl get deployments -o wide | awk  '{print $8 "\t",  $7}' | grep test4 > c:/Users/AC60906/git/prodrelease/sot-cicd-scripts/bm/test4-image
+#PROD CMD
+#kubectl get deployments -o wide | awk  '{print $8 "\t",  $7}' > c:/Users/AC60906/git/prodrelease/sot-cicd-scripts/bm/prod-image
+#PET1
+#kubectl get deployments -o wide | awk  '{print $8 "\t",  $7}' | grep bmpet1 > c:/Users/AC60906/git/prodrelease/sot-cicd-scripts/bm/pet1-image-20
 bmKubeCommon.compareImages("c:/bm/test1-image", "c:/bm/prod-image", kubeDeployList)
 #checkPodsDate("c:/bm/test1-pod", 126000, kubeDeployList)    
 log.info("Done!!!")
