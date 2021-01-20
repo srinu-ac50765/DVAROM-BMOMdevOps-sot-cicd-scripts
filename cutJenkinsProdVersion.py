@@ -1,5 +1,6 @@
 import bmJenkinsCommon
 import bmGitLabCommon
+import bmGitHubCommon
 import logging
 import warnings
 #from utils import py
@@ -17,19 +18,22 @@ logger_handler.setFormatter(logging.Formatter('%(message)s'))
 logging.root.addHandler(logger_handler)
 logging.root.setLevel(logging.INFO)
 
-jenkinsToGitMap = bmGitLabCommon.getJenkinsToGitMap()
+#jenkinsToGitMap = bmGitLabCommon.getJenkinsToGitMap()
+jenkinsToGitMap = bmGitHubCommon.getJenkinsToGitMap()
 log.debug(jenkinsToGitMap)
    
-envName = "TEST4"
-branch = "release/december20"
-lastBranch = "release/november20"
+envName = "TEST1"
+branch = "release/january21"
+lastBranch = "release/december20"
 
 totalCount = 0;
 changedCount = 0;
 for jenkinsPipeLineBase, gitProjName in jenkinsToGitMap.items(): 
     totalCount = totalCount + 1
-    needDeploy = bmGitLabCommon.compareBranchesLastCommit(gitProjName, lastBranch, branch);
-    jenkinsPipeLineBase = jenkinsPipeLineBase.replace("_build_","_Test4_")
+    #needDeploy = bmGitLabCommon.compareBranchesLastCommit(gitProjName, lastBranch, branch);
+    #print(gitProjName)
+    needDeploy = bmGitHubCommon.compareBranchesLastCommit(gitProjName, lastBranch, branch);
+    jenkinsPipeLineBase = jenkinsPipeLineBase.replace("_build_","_Test1_")
     #print(gitProjName)
     if needDeploy:        
         pipeline =  bmJenkinsCommon.getPipelineName(jenkinsPipeLineBase, envName)
