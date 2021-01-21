@@ -34,6 +34,8 @@ CenturyLink/BMOM-om-process-dtv-processing,bmp-om-process-dtv-processing,BMOM_pr
 CenturyLink/BMOM-om-process-ffwf,om-process-ffwf,BMOM_Process_ffwf_build_CONTINUOUS
 CenturyLink/BMOM-om-process-preprocess,bmp-om-process-preprocess,BMOM_process_preprocess_service_build_CONTINUOUS
 CenturyLink/BMOM-om-process-provisioning,bmp-om-process-provisioning,BMOM_process_provisioning_service_build_CONTINUOUS
+#CenturyLink/BMOM-om-process-recovery,bmp-om-process-recovery,BMOM_om_process_recovery_service_build_CONTINUOUS
+CenturyLink/BMOM-om-process-tom,bmp-om-process-tom,BMOM_om_process_tom_service_build_CONTINUOUS
 CenturyLink/BMOM-order-management-fallout-process,bmp-order-management-fallout-process,BMOM_order_management_fallout_process_build_CONTINUOUS
 CenturyLink/BMOM-OrderDecompositionService,bmp-order-decomposition-business-service,BMOM_order_decomposition_business_service_build_CONTINUOUS
 CenturyLink/BMOM-OrderManagementProcess,bmp-order-management-process,BMOM_order_management_process_build_CONTINUOUS
