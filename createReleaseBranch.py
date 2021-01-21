@@ -1,4 +1,5 @@
 import bmGitLabCommon
+import bmGitHubCommon
 import logging
 import warnings
 warnings.filterwarnings("ignore")
@@ -18,6 +19,7 @@ for projName in projMap.keys():
     if projName.startswith('#'):
         continue
     #bmGitLabCommon.createBranch(projName, "release/april20", "release/may20")    
-    bmGitLabCommon.createBranch(projName, "release/may20", "release/june20")
+    #bmGitLabCommon.createBranch(projName, "release/december20", "release/january21")
+    bmGitHubCommon.createBranch(projName, "release/december20", "release/january21")
 
 log.info("Done!!!")
