@@ -13,13 +13,13 @@ logging.root.setLevel(logging.INFO)
 mergedList=[]
 unmergedList=[]  
  
-projMap=bmGitLabCommon.getprojMap()
+projMap=bmGitHubCommon.getprojMap()
 log.debug(projMap)
 for projName in projMap.keys():
     if projName.startswith('#'):
         continue
     #bmGitLabCommon.createBranch(projName, "release/april20", "release/may20")    
     #bmGitLabCommon.createBranch(projName, "release/december20", "release/january21")
-    bmGitHubCommon.createBranch(projName, "release/december20", "release/january21")
+    bmGitHubCommon.createBranch(projName, "release/january21", "release/february21")
 
 log.info("Done!!!")

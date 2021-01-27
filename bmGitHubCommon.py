@@ -132,7 +132,7 @@ def createBranch(projectName, refBranchName, newBranchName):
     gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
     project = gh.get_repo(projectName)     
     try:
-        project.get_branch(fromBranchName)
+        project.get_branch(newBranchName)
         log.info("    %s %s already exist", projectName, newBranchName)
         return 0
     except:   
@@ -169,7 +169,7 @@ def getBranchCommitInfo(projectName, branchName, releaseDate):
     
     
     if afterReleaseAuthor:
-        summary = f"{projectName}:{beforeReleaseCommitCount}:{afterReleaseCommitCount}:{beforeReleaseAuthor}:{afterReleaseAuthor}"        
+        summary = f"{projectName}:{beforeReleaseCommitCount}:{afterReleaseCommitCount}:{beforeReleaseAuthor}:{afterReleaseAuthor}"      
     else:
         summary = f"{projectName}:{beforeReleaseCommitCount}:{afterReleaseCommitCount}:{beforeReleaseAuthor}"
             
