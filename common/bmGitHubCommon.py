@@ -1,10 +1,8 @@
 import warnings
 import logging
 import datetime
-import json
-import base64
 from github import Github
-from pprint import pprint
+import os
 
 warnings.filterwarnings("ignore")
 log=logging.getLogger("bmGitLabCommon")
@@ -15,9 +13,21 @@ jenkinsToGitMap = {}
 projConfigBaseMap = {}
 gitMissingCommitEmailSet = set()
 
+
 def init():
-    
-    lineList = [line.rstrip('\n') for line in open("NewConfigInfo.txt", "r")]
+    list_of_top_folders_and_files = [(root, dirs, files) for root, dirs, files, in
+                                     os.walk(os.path.dirname(os.path.dirname(__file__)), topdown=False)]
+    search_folder = "common"
+    search_file = "InputConfigInfo.txt"
+    input_config_file_path = ''
+    for i in list_of_top_folders_and_files:
+        if search_folder in i.__getitem__(0):
+            files = i.__getitem__(2)
+            for file in files:
+                if search_file == file:
+                    input_config_file_path = (os.path.join(i.__getitem__(0), file))
+                    break
+    lineList = [line.rstrip('\n') for line in open(input_config_file_path, "r")]
 
     for line in lineList:
         line = line.strip()
@@ -72,7 +82,7 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
 
     result = project.compare(targetBranchName, fromBranchName)._rawData
     # get the commits
-    print(result) 
+    #print(result) 
     retVal = -1;
     if result["total_commits"] == 0:
         retVal = 0
@@ -81,7 +91,7 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
       
         firstCommit = result['commits'][0];
         for commit in result['commits']:  
-            print(commit)          
+            #print(commit)          
             log.info(getCommitInfoString(commit))    
             gitMissingCommitEmailSet.add(commit["commit"]["author"]["email"]) 
         log.info("==================================================")
@@ -210,7 +220,8 @@ def compareBranchesLastCommit(projectName, branch1Name, branch2Name):
         return 1;    
                     
 init()
+#compareBranchesLastCommit("CenturyLink/BMOM-om-process-billing", "release/december20", "release/january21")
 #compareBranches("CenturyLink/BMOM-bbtcs-business-service" "release/december20", "release/january21")
 #compareBranches("CenturyLink/BMOM-KafkaAdapter","release/november20","release/december20")
 
-getAllProjects()
+#getAllProjects()

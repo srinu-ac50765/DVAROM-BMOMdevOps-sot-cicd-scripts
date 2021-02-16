@@ -1,5 +1,4 @@
-import bmKubeCommon
-import bmGitLabCommon
+from common import bmKubeCommon
 
 import warnings
 import logging

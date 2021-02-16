@@ -56,13 +56,13 @@ CenturyLink/BMOM-ordermanagementGui,skip,BMOM_BMP_BM_UI_build_CONTINUOUS
 #CenturyLink/BMOM-BillQuoteBusinessService,
 #CenturyLink/BMOM-ServiceTestAutomation,
 #CenturyLink/BMOM-TaraToolService,
-#CenturyLink/BMOM-order-management-camunda-common,
+#CenturyLink/BMOM-order-management-camunda-common,skip,skip
 #CenturyLink/BMOM-DtvDailyoptoutService,bmp-dtv-dailyoptout-service,BMOM_DTV_DAILYOPTOUT_build_CONTINUOUS
 #CenturyLink/BMOM-DtvDailysalesorderDetailService,bmp-dtv-dailysalesorder-detail-service,BMOM_DTV_DAILY_SALES_ORDER_DETAIL_build_CONTINUOUS
 #CenturyLink/BMOM-DtvDailysalesorderService,bmp-dtv-dailysalesorder-service,BMOM_DTV_DAILY_SALES_ORDER_build_CONTINUOUS
 #CenturyLink/BMOM-DtvDailyworkorderService,bmp-dtv-dailyworkorder-service,BMOM_DTV_DAILY_SALES_ORDER_build_CONTINUOUS
 #CenturyLink/BMOM-Dtv-actvoptinbackfallout-service,bmp-dtv-actvoptinbackfallout-service,BMOM_DTV_ACTVOPTIN_BACKFALLOUT_SERVICE_build_CONTINUOUS
 #CenturyLink/BMOM-DtvChurnbackfalloutService,bmp-dtv-churnbackfallout-service,BMOM_DTV_CHURNBACKFALLOUT_build_CONTINUOUS
-#CenturyLink/BMOM-DhpProvisionService,
+#CenturyLink/BMOM-DhpProvisionService,skip,skip
 #CenturyLink/BMOM-ConfigRepo,
 #CenturyLink/,bmp-dtv-weeklydiscountstatus,BMOM_DTV_WEEKLY_DISCOUNT_STATUS_build_CONTINUOUS

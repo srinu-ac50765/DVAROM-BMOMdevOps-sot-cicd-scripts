@@ -1,8 +1,7 @@
-import bmGitHubCommon
+from common import bmGitHubCommon, emailLib
 import logging
 import warnings
 #from utils import py
-import emailLib
 import sys
 warnings.filterwarnings("ignore")
 
@@ -29,7 +28,7 @@ if sendEmailFlag:
 mergedList=[]
 unmergedList=[]  
  
-projMap=bmGitHubCommon.getprojMap()
+projMap= bmGitHubCommon.getprojMap()
 log.debug(projMap)
 #fromBranch = "release/march20"
 #toBranch = "release/april20"
@@ -47,7 +46,7 @@ for projName in projMap.keys():
         continue        
     #result=bmGitHubCommon.compareBranches(projName, "release/december19", "release/january20");     
     #result=bmGitHubCommon.compareBranches(projName, "release/january20", "release/february20"); 
-    result=bmGitHubCommon.compareBranches(projName, fromBranch, toBranch);
+    result= bmGitHubCommon.compareBranches(projName, fromBranch, toBranch);
     if result == 0:
         mergedList.append(projName)
     else:
@@ -56,7 +55,7 @@ for projName in projMap.keys():
 log.debug(str(("merged: ",mergedList)))
 log.debug(str(("unmerged: ",unmergedList)))
 
-emailList=bmGitHubCommon.getMissingCommitEmailList()
+emailList= bmGitHubCommon.getMissingCommitEmailList()
 
 if emailList and sendEmailFlag:
     #emailList=["ning.li@centurylink.com"]

@@ -1,12 +1,7 @@
-import bmJenkinsCommon
-import bmGitLabCommon
-import bmGitHubCommon
+from common import bmJenkinsCommon, bmGitHubCommon
 import logging
 import warnings
 #from utils import py
-import emailLib
-import datetime
-import sys
 warnings.filterwarnings("ignore")
 
 #logging.basicConfig()
