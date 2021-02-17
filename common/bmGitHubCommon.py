@@ -3,6 +3,7 @@ import logging
 import datetime
 from github import Github
 import os
+import configparser
 
 warnings.filterwarnings("ignore")
 log=logging.getLogger("bmGitLabCommon")
@@ -12,6 +13,11 @@ projToJenkinsMap = {}
 jenkinsToGitMap = {}
 projConfigBaseMap = {}
 gitMissingCommitEmailSet = set()
+# Fetching Github details from properties
+config = configparser.ConfigParser()
+config.read('prod.properties')
+github_url = config.get('GeneralSection', 'github_url')
+github_token = config.get('GeneralSection', 'github_token')
 
 
 def init():
@@ -36,35 +42,40 @@ def init():
         if line.startswith('#'):
             continue
         log.debug(line)
-        projName, configBase,jenkinsPipelineBase = line.split(",")
+        projName, configBase, jenkinsPipelineBase = line.split(",")
         projName = projName.strip()
         jenkinsPipelineBase = jenkinsPipelineBase.strip()
         configBase = configBase.strip()
-       
         projMap[projName] = projName
         projToJenkinsMap[projName] = jenkinsPipelineBase
-        jenkinsToGitMap[jenkinsPipelineBase]=projName          
+        jenkinsToGitMap[jenkinsPipelineBase] = projName
         if configBase != "skip":
             projConfigBaseMap[projName] = configBase
 
+
 def getprojMap():
-    return projMap;
+    return projMap
+
 
 def getProjToJenkinsMap():
-    return projToJenkinsMap;
+    return projToJenkinsMap
+
 
 def getJenkinsToGitMap():
-    return jenkinsToGitMap;
+    return jenkinsToGitMap
+
 
 def getMissingCommitEmailList():
-    return gitMissingCommitEmailSet;
+    return gitMissingCommitEmailSet
+
 
 def getProjConfigBaseMap():
-    return projConfigBaseMap;
+    return projConfigBaseMap
+
 
 def compareBranches(projectName, fromBranchName, targetBranchName):
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     log.debug("Saritha compareBranches %s", projectName) 
     project = gh.get_repo(projectName)
     log.debug("compareBranches %s from:%s to:%s", project.name, fromBranchName, targetBranchName)    
@@ -83,13 +94,13 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
     result = project.compare(targetBranchName, fromBranchName)._rawData
     # get the commits
     #print(result) 
-    retVal = -1;
+    retVal = -1
     if result["total_commits"] == 0:
         retVal = 0
     else:
         log.info("\r\n%s from:%s to:%s", project.name, fromBranchName, targetBranchName) 
       
-        firstCommit = result['commits'][0];
+        firstCommit = result['commits'][0]
         for commit in result['commits']:  
             #print(commit)          
             log.info(getCommitInfoString(commit))    
@@ -98,7 +109,8 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
         log.info("Merge Owner:%s", firstCommit["commit"]["author"]["email"])   
         retVal = 1 
     return retVal
-        
+
+
 def getCommitInfoString(commit):
     #log.info("  commitId:%s  author:%s  date:%s msg:%s", commit["short_id"], commit["author_name"], commit["authored_date"], commit["title"])
     #commitInfoString="   commitId:%s  author_email:%s  date:%s msg:%s" % (commit["short_id"], commit["author_email"], commit["authored_date"], commit["title"])
@@ -106,9 +118,11 @@ def getCommitInfoString(commit):
     commitInfoString="   commitId:%s  author_email:%s  date:%s msg:%s" % (commit["sha"][0:7], commit["commit"]["author"]["email"], commit["commit"]["author"]["date"], commit["commit"]["message"].replace('\n\n',' '))
     #print(commitInfoString)
     return commitInfoString
+
+
 def getBranchLastCommitInfo(projectName, branchName):
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     project = gh.get_repo(projectName)
     log.debug("getGitLastUpdateDate project:%s branch:%s", projectName, branchName)    
     try:
@@ -126,20 +140,22 @@ def getBranchLastCommitInfo(projectName, branchName):
     lastCommitInfo["lastCommit"] = branch.commit
     return lastCommitInfo
 
+
 def getAllProjects():
     print("List all the GitHub Repositories...")
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     count = 0    
     for repo in gh.get_user().get_repos():
         count=count+1
         print(repo)
         
     print("total project count", count)  
-    
+
+
 def createBranch(projectName, refBranchName, newBranchName):
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     project = gh.get_repo(projectName)     
     try:
         project.get_branch(newBranchName)
@@ -152,9 +168,10 @@ def createBranch(projectName, refBranchName, newBranchName):
         except:
             raise Exception(project.name, " error creating " + newBranchName + " from " + refBranchName)
 
+
 def getBranchCommitInfo(projectName, branchName, releaseDate):
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     project = gh.get_repo(projectName)
     log.debug("getBranchCommitInfo %s branch:%s date:%s", project.name, branchName, releaseDate)    
     commits = project.commits.list(all=True,
@@ -191,8 +208,8 @@ def getBranchCommitInfo(projectName, branchName, releaseDate):
     return retMap;
 
 def compareBranchesLastCommit(projectName, branch1Name, branch2Name):
-    gh = Github(base_url="https://github.com/CenturyLink", login_or_token="142eeb26666a4067fd9df2efea676e98d20d78b8")
-    gh = Github("142eeb26666a4067fd9df2efea676e98d20d78b8")
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
     project = gh.get_repo(projectName)
     log.debug("compareBranchesLastCommit %s %s %s", project.name, branch1Name, branch2Name)    
     branch1CommitId = ""
@@ -204,7 +221,7 @@ def compareBranchesLastCommit(projectName, branch1Name, branch2Name):
     except:
         log.info("New project %s", project.name)       
         try: 
-            branch1CommitId = 0;                                   
+            branch1CommitId = 0
         except:
             raise Exception(projectName, " Invalid from branch " + branch1Name)
         
@@ -215,10 +232,41 @@ def compareBranchesLastCommit(projectName, branch1Name, branch2Name):
         raise Exception(project.name, " Invalid target branch " + branch2Name)    
     
     if branch1CommitId == branch2CommitId:
-        return 0;
+        return 0
     else:
-        return 1;    
-                    
+        return 1
+
+
+def compareBranchesLastCommitSkipCICD(projectName, branch1Name, branch2Name):
+    gh = Github(base_url=github_url, login_or_token=github_token)
+    gh = Github(github_token)
+    project = gh.get_repo(projectName)
+    log.debug("compareBranchesLastCommit %s %s %s", project.name, branch1Name, branch2Name)
+    branch1CommitId = ""
+    branch2CommitId = ""
+    try:
+        branch1 = project.get_branch(branch1Name)
+        branch1CommitId = branch1.commit.__getattribute__("sha")
+        print(branch1.commit.raw_data)
+    except:
+        log.info("New project %s", project.name)
+        try:
+            branch1CommitId = 0
+        except:
+            raise Exception(projectName, " Invalid from branch " + branch1Name)
+
+    try:
+        branch2 = project.get_branch(branch2Name)
+        branch2CommitId = branch2.commit.__getattribute__("sha")
+    except:
+        raise Exception(project.name, " Invalid target branch " + branch2Name)
+
+    if branch1CommitId == branch2CommitId:
+        return 0
+    else:
+        return 1
+
+
 init()
 #compareBranchesLastCommit("CenturyLink/BMOM-om-process-billing", "release/december20", "release/january21")
 #compareBranches("CenturyLink/BMOM-bbtcs-business-service" "release/december20", "release/january21")

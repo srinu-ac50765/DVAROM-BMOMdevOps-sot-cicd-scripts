@@ -27,7 +27,8 @@ changedCount = 0
 for projName in projList:
     if projName.startswith('#'):
         continue
-    result = bmGitHubCommon.compareBranchesLastCommit(projName, branch1, branch2)
+    #result = bmGitHubCommon.compareBranchesLastCommit(projName, branch1, branch2)
+    result = bmGitHubCommon.compareBranches(projName, branch1, branch2)
     jenkinsBase = projToJenkinsMap[projName]
     totalCount = totalCount + 1
     if result > 0:
