@@ -95,19 +95,21 @@ def compareBranches(projectName, fromBranchName, targetBranchName):
     # get the commits
     #print(result) 
     retVal = -1
-    if result["total_commits"] == 0:
+    # print('Serice == ', project)
+    # print('Total commits == ', result["total_commits"])
+    if result["total_commits"] < 2:
         retVal = 0
     else:
-        log.info("\r\n%s from:%s to:%s", project.name, fromBranchName, targetBranchName) 
-      
-        firstCommit = result['commits'][0]
-        for commit in result['commits']:  
-            #print(commit)          
-            log.info(getCommitInfoString(commit))    
-            gitMissingCommitEmailSet.add(commit["commit"]["author"]["email"]) 
-        log.info("==================================================")
-        log.info("Merge Owner:%s", firstCommit["commit"]["author"]["email"])   
-        retVal = 1 
+        log.info("\r\n%s from:%s to:%s", project.name, fromBranchName, targetBranchName)
+
+        # firstCommit = result['commits'][0]
+        # for commit in result['commits']:
+        #     #print(commit)
+        #     log.info(getCommitInfoString(commit))
+        #     gitMissingCommitEmailSet.add(commit["commit"]["author"]["email"])
+        # log.info("==================================================")
+        # log.info("Merge Owner:%s", firstCommit["commit"]["author"]["email"])
+        retVal = 1
     return retVal
 
 

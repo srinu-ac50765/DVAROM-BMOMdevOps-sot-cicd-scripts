@@ -37,7 +37,7 @@ def getCrumb():
     return crumbHeader
 
 
-crumbHeader = getCrumb()
+#crumbHeader = getCrumb()
 
 
 def triggerPipeline(pipeline):
@@ -140,6 +140,20 @@ def getProdBuildNumber(pipeline):
             log.info("%s/%s. But build %s already in %s stage status:%s", pipeline, str(buildNumber),
                      str(prodDeployNumber), buildLastStage['name'], buildLastStage['status'])
 
+
+def getProdBuildNumberForUnified(pipeline):
+    buildNumber = getLatestBuildNumberByLastStage(pipeline, "Declarative: Post Actions", "Success")
+    prodDeployNumber, prodBuildDt = getLatestBuildNumberByStage(pipeline, "PROD-Deploy", "")
+
+    if buildNumber == -1:
+        log.error("%s: NO BUILD AVAILABLE", pipeline)
+    else:
+        if (prodDeployNumber == None or prodDeployNumber < buildNumber):
+            log.info("%s/%s", pipeline, str(buildNumber))
+        else:
+            buildLastStage = getBuildLastStage(pipeline, prodDeployNumber)
+            log.info("%s/%s. But build %s already in %s stage status:%s", pipeline, str(buildNumber),
+                     str(prodDeployNumber), buildLastStage['name'], buildLastStage['status'])
 
 def getTestDeployBuildNumber(pipeline):
     buildNumber = getLatestBuildNumberByLastStage(pipeline, "TEST-ReleaseGate", "PAUSED_PENDING_INPUT")
