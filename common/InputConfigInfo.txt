@@ -56,7 +56,7 @@ CenturyLink/BMOM-ordermanagementGui,skip,BMOM_BMP_BM_UI_build_CONTINUOUS
 #CenturyLink/BMOM-BillQuoteBusinessService,
 #CenturyLink/BMOM-ServiceTestAutomation,
 #CenturyLink/BMOM-TaraToolService,
-#CenturyLink/BMOM-order-management-camunda-common,skip,skip
+CenturyLink/BMOM-order-management-camunda-common,skip,skip
 #CenturyLink/BMOM-DtvDailyoptoutService,bmp-dtv-dailyoptout-service,BMOM_DTV_DAILYOPTOUT_build_CONTINUOUS
 #CenturyLink/BMOM-DtvDailysalesorderDetailService,bmp-dtv-dailysalesorder-detail-service,BMOM_DTV_DAILY_SALES_ORDER_DETAIL_build_CONTINUOUS
 #CenturyLink/BMOM-DtvDailysalesorderService,bmp-dtv-dailysalesorder-service,BMOM_DTV_DAILY_SALES_ORDER_build_CONTINUOUS

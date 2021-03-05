@@ -18,6 +18,6 @@ log.debug(projMap)
 for projName in projMap.keys():
     if projName.startswith('#'):
         continue
-    bmGitHubCommon.createBranch(projName, "release/december20", "release/january21")
+    bmGitHubCommon.createBranch(projName, "release/march21", "release/april21")
 
 log.info("Done!!!")
